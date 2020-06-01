@@ -1,0 +1,84 @@
+*{
+    border: 0;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar{
+    background-color: #3c763d;
+}
+
+.header-main{
+    background-color: #3c763d;
+}
+
+.section-header .logo, .header-main .logo {
+    max-height: 70px;
+    width: auto;
+    display: inline-block;
+}
+.section-header .logo-text, .header-main .logo-text {
+    font-size: 24px; }
+.widget-header{
+    margin-left: 2rem;}
+
+#logo-carrito,#logo-user,#logo-login,#span-login,#login-flecha,#span-carrito{
+    color: white;
+}
+
+.carousel-item {
+    height: 65vh;
+    min-height: 300px;
+    background: no-repeat center center scroll;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+html{
+    scroll-behavior: smooth;
+}
+
+#contenido{
+    height: 100%;
+}
+
+.container-fluid #Acerca{
+    padding: 50px 50px;
+}
+
+.footerLogo{
+    font-size: 40px;
+    color: #fff;
+}
+
+.footerLogo:hover{
+    color: aqua;
+}
+
+footer{
+    background-color: #3c763d;
+    text-align: center;
+    position: absolute;
+    padding-top: 20px;
+}
+
+footer li {
+    list-style: none;
+    display: inline-block;
+    color: #fff;
+}
+
+
+#inputTableBuscar {
+    /*background-image: url('/css/searchicon.png'); /* Add a search icon to input */
+    background-position: 10px 12px; /* Position the search icon */
+    background-repeat: no-repeat; /* Do not repeat the icon image */
+    width: 100%; /* Full-width */
+    font-size: 16px; /* Increase font-size */
+    padding: 12px 20px 12px 40px; /* Add some padding */
+    border: 1px solid #ddd; /* Add a grey border */
+    margin-bottom: 12px; /* Add some space below the input */
+  }
+
