@@ -3,7 +3,7 @@
 ?>
     <div class="container-fluid" style="padding: 80px;">
         <div class="row justify-content-center align-items-center">
-            <form action="?controlador=Bayes&accion=calcularTipoProfesor" method="post">
+            <form action="?controlador=Bayes&accion=adivinarTipoProfesor" method="post">
                 <div class="form-group" id="">
                   
                 <h2>Determinar tipo de profesor</h2>

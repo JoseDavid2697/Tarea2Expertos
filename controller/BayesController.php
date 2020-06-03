@@ -36,44 +36,14 @@ class BayesController
             $index++;
         }
 
+        //Llama al algoritmo de bayes para profesor y guarda las probabilidades en un archivo
+
         $this->guardarProbabilidadesProfesor($data);
     }
 
     public function calcularTipoProfesor()
     {
-
-        //Datos del usuario que corresponden a cada columna de datos
-        $a = $_POST['A'];
-        $b = $_POST['B'];
-        $c = $_POST['C'];
-        $d = $_POST['D'];
-        $e = $_POST['E'];
-        $f = $_POST['F'];
-        $g = $_POST['G'];
-        $h = $_POST['H'];
-
-        //A - EDAD
-        $vector_usuario['a'] = $a;
-        //B
-        $vector_usuario['b'] = $b;
-        //C
-        $vector_usuario['c'] = $c;
-        //D
-        $vector_usuario['d'] = $d;
-        //E
-        $vector_usuario['e'] = $e;
-        //F
-        $vector_usuario['f'] = $f;
-        //G
-        $vector_usuario['g'] = $g;
-        //H
-        $vector_usuario['h'] = $h;
-
         $this->datosProfesor();
-
-        //LLAMAR A CONSULTAR EL ARCHIVO PASANDO EL VECTOR USUARIO COMO PARAMETRO
-
-        //$resultado = obtenerProbabilidad($vector_usuario);
     }
 
 
@@ -445,205 +415,205 @@ class BayesController
             }
         }
 
-       // $x = json_encode($nc);
+        // $x = json_encode($nc);
         //echo $x;
 
         //Probabilidad de cada rango de edad por clase
         //3:
 
         //Probabilidades de frecuencia para beginner ** (nc[edad][beginner]+m*p)/(n+m)
-        $pfBeginner["A3"] = (($nc["A3"]["Beginner"]) + ($m * $pBegin)) / ($n["b"] + $m);
+        $pfBeginner["A3"] = (($nc["A3"]["Beginner"]) + ($m * $pA)) / ($n["b"] + $m);
 
         //Probabilidades de frecuencia para intermediate 
-        $pfIntermediate["A3"] = (($nc["A3"]["Intermediate"]) + ($m * $pInterm)) / ($n["i"] + $m);
+        $pfIntermediate["A3"] = (($nc["A3"]["Intermediate"]) + ($m * $pA)) / ($n["i"] + $m);
 
         //Probabilidades de frecuencia para advanced 
-        $pfAdvanced["A3"] = (($nc["A3"]["Advanced"]) + ($m * $pAdvan)) / ($n["a"] + $m);
+        $pfAdvanced["A3"] = (($nc["A3"]["Advanced"]) + ($m * $pA)) / ($n["a"] + $m);
 
         //2:
         //Probabilidades de frecuencia para beginner ** (nc[edad][beginner]+m*p)/(n+m)
-        $pfBeginner["A2"] = (($nc["A2"]["Beginner"]) + ($m * $pBegin)) / ($n["b"] + $m);
+        $pfBeginner["A2"] = (($nc["A2"]["Beginner"]) + ($m * $pA)) / ($n["b"] + $m);
 
         //Probabilidades de frecuencia para intermediate 
-        $pfIntermediate["A2"] = (($nc["A2"]["Intermediate"]) + ($m * $pInterm)) / ($n["i"] + $m);
+        $pfIntermediate["A2"] = (($nc["A2"]["Intermediate"]) + ($m * $pA)) / ($n["i"] + $m);
 
         //Probabilidades de frecuencia para advanced 
-        $pfAdvanced["A2"] = (($nc["A2"]["Advanced"]) + ($m * $pAdvan)) / ($n["a"] + $m);
+        $pfAdvanced["A2"] = (($nc["A2"]["Advanced"]) + ($m * $pA)) / ($n["a"] + $m);
 
         //1:
         //Probabilidades de frecuencia para beginner ** (nc[edad][beginner]+m*p)/(n+m)
-        $pfBeginner["A1"] = (($nc["A1"]["Beginner"]) + ($m * $pBegin)) / ($n["b"] + $m);
+        $pfBeginner["A1"] = (($nc["A1"]["Beginner"]) + ($m * $pA)) / ($n["b"] + $m);
 
         //Probabilidades de frecuencia para intermediate 
-        $pfIntermediate["A1"] = (($nc["A1"]["Intermediate"]) + ($m * $pInterm)) / ($n["i"] + $m);
+        $pfIntermediate["A1"] = (($nc["A1"]["Intermediate"]) + ($m * $pA)) / ($n["i"] + $m);
 
         //Probabilidades de frecuencia para advanced 
-        $pfAdvanced["A1"] = (($nc["A1"]["Advanced"]) + ($m * $pAdvan)) / ($n["a"] + $m);
+        $pfAdvanced["A1"] = (($nc["A1"]["Advanced"]) + ($m * $pA)) / ($n["a"] + $m);
 
         /*******************************************************************************************************/
         //Probabilidad de cada genero por clase
 
 
         //Probabilidades de frecuencia para beginner
-        $pfBeginner["BF"] = (($nc["BF"]["Beginner"]) + ($m * $pBegin)) / ($n["b"] + $m);
+        $pfBeginner["BF"] = (($nc["BF"]["Beginner"]) + ($m * $pB)) / ($n["b"] + $m);
 
         //Probabilidades de frecuencia para intermediate 
-        $pfIntermediate["BF"] = (($nc["BF"]["Intermediate"]) + ($m * $pInterm)) / ($n["i"] + $m);
+        $pfIntermediate["BF"] = (($nc["BF"]["Intermediate"]) + ($m * $pB)) / ($n["i"] + $m);
 
         //Probabilidades de frecuencia para advanced 
-        $pfAdvanced["BF"] = (($nc["BF"]["Advanced"]) + ($m * $pAdvan)) / ($n["a"] + $m);
+        $pfAdvanced["BF"] = (($nc["BF"]["Advanced"]) + ($m * $pB)) / ($n["a"] + $m);
 
 
         //Probabilidades de frecuencia para beginner
-        $pfBeginner["BM"] = (($nc["BM"]["Beginner"]) + ($m * $pBegin)) / ($n["b"] + $m);
+        $pfBeginner["BM"] = (($nc["BM"]["Beginner"]) + ($m * $pB)) / ($n["b"] + $m);
 
         //Probabilidades de frecuencia para intermediate 
-        $pfIntermediate["BM"] = (($nc["BM"]["Intermediate"]) + ($m * $pInterm)) / ($n["i"] + $m);
+        $pfIntermediate["BM"] = (($nc["BM"]["Intermediate"]) + ($m * $pB)) / ($n["i"] + $m);
 
         //Probabilidades de frecuencia para advanced 
-        $pfAdvanced["BM"] = (($nc["BM"]["Advanced"]) + ($m * $pAdvan)) / ($n["a"] + $m);
+        $pfAdvanced["BM"] = (($nc["BM"]["Advanced"]) + ($m * $pB)) / ($n["a"] + $m);
 
 
         //Probabilidades de frecuencia para beginner 
-        $pfBeginner["BNA"] = (($nc["BNA"]["Beginner"]) + ($m * $pBegin)) / ($n["b"] + $m);
+        $pfBeginner["BNA"] = (($nc["BNA"]["Beginner"]) + ($m * $pB)) / ($n["b"] + $m);
 
         //Probabilidades de frecuencia para intermediate 
-        $pfIntermediate["BNA"] = (($nc["BNA"]["Intermediate"]) + ($m * $pInterm)) / ($n["i"] + $m);
+        $pfIntermediate["BNA"] = (($nc["BNA"]["Intermediate"]) + ($m * $pB)) / ($n["i"] + $m);
 
         //Probabilidades de frecuencia para advanced 
-        $pfAdvanced["BNA"] = (($nc["BNA"]["Advanced"]) + ($m * $pAdvan)) / ($n["a"] + $m);
+        $pfAdvanced["BNA"] = (($nc["BNA"]["Advanced"]) + ($m * $pB)) / ($n["a"] + $m);
 
         /*******************************************************************************************************/
         //Probabilidad de cada self education por clase
 
 
         //Probabilidades de frecuencia para beginner 
-        $pfBeginner["CB"] = (($nc["CB"]["Beginner"]) + ($m * $pBegin)) / ($n["b"] + $m);
+        $pfBeginner["CB"] = (($nc["CB"]["Beginner"]) + ($m * $pC)) / ($n["b"] + $m);
 
         //Probabilidades de frecuencia para intermediate 
-        $pfIntermediate["CB"] = (($nc["CB"]["Intermediate"]) + ($m * $pInterm)) / ($n["i"] + $m);
+        $pfIntermediate["CB"] = (($nc["CB"]["Intermediate"]) + ($m * $pC)) / ($n["i"] + $m);
 
         //Probabilidades de frecuencia para advanced 
-        $pfAdvanced["CB"] = (($nc["CB"]["Advanced"]) + ($m * $pAdvan)) / ($n["a"] + $m);
+        $pfAdvanced["CB"] = (($nc["CB"]["Advanced"]) + ($m * $pC)) / ($n["a"] + $m);
 
 
         //Probabilidades de frecuencia para beginner ** (nc[edad][beginner]+m*p)/(n+m)
-        $pfBeginner["CI"] = (($nc["CI"]["Beginner"]) + ($m * $pBegin)) / ($n["b"] + $m);
+        $pfBeginner["CI"] = (($nc["CI"]["Beginner"]) + ($m * $pC)) / ($n["b"] + $m);
 
         //Probabilidades de frecuencia para intermediate 
-        $pfIntermediate["CI"] = (($nc["CI"]["Intermediate"]) + ($m * $pInterm)) / ($n["i"] + $m);
+        $pfIntermediate["CI"] = (($nc["CI"]["Intermediate"]) + ($m * $pC)) / ($n["i"] + $m);
 
         //Probabilidades de frecuencia para advanced 
-        $pfAdvanced["CI"] = (($nc["CI"]["Advanced"]) + ($m * $pAdvan)) / ($n["a"] + $m);
+        $pfAdvanced["CI"] = (($nc["CI"]["Advanced"]) + ($m * $pC)) / ($n["a"] + $m);
 
 
         //Probabilidades de frecuencia para beginner ** (nc[edad][beginner]+m*p)/(n+m)
-        $pfBeginner["CA"] = (($nc["CA"]["Beginner"]) + ($m * $pBegin)) / ($n["b"] + $m);
+        $pfBeginner["CA"] = (($nc["CA"]["Beginner"]) + ($m * $pC)) / ($n["b"] + $m);
 
         //Probabilidades de frecuencia para intermediate 
-        $pfIntermediate["CA"] = (($nc["CA"]["Intermediate"]) + ($m * $pInterm)) / ($n["i"] + $m);
+        $pfIntermediate["CA"] = (($nc["CA"]["Intermediate"]) + ($m * $pC)) / ($n["i"] + $m);
 
         //Probabilidades de frecuencia para advanced 
-        $pfAdvanced["CA"] = (($nc["CA"]["Advanced"]) + ($m * $pAdvan)) / ($n["a"] + $m);
+        $pfAdvanced["CA"] = (($nc["CA"]["Advanced"]) + ($m * $pC)) / ($n["a"] + $m);
 
         /*******************************************************************************************************/
         //Probabilidad de cada vez impartido curso por clase
 
 
         //Probabilidades de frecuencia para beginner 
-        $pfBeginner["D1"] = (($nc["D1"]["Beginner"]) + ($m * $pBegin)) / ($n["b"] + $m);
+        $pfBeginner["D1"] = (($nc["D1"]["Beginner"]) + ($m * $pD)) / ($n["b"] + $m);
 
         //Probabilidades de frecuencia para intermediate 
-        $pfIntermediate["D1"] = (($nc["D1"]["Intermediate"]) + ($m * $pInterm)) / ($n["i"] + $m);
+        $pfIntermediate["D1"] = (($nc["D1"]["Intermediate"]) + ($m * $pD)) / ($n["i"] + $m);
 
         //Probabilidades de frecuencia para advanced 
-        $pfAdvanced["D1"] = (($nc["D1"]["Advanced"]) + ($m * $pAdvan)) / ($n["a"] + $m);
+        $pfAdvanced["D1"] = (($nc["D1"]["Advanced"]) + ($m * $pD)) / ($n["a"] + $m);
 
 
         //Probabilidades de frecuencia para beginner ** (nc[edad][beginner]+m*p)/(n+m)
-        $pfBeginner["D2"] = (($nc["D2"]["Beginner"]) + ($m * $pBegin)) / ($n["b"] + $m);
+        $pfBeginner["D2"] = (($nc["D2"]["Beginner"]) + ($m * $pD)) / ($n["b"] + $m);
 
         //Probabilidades de frecuencia para intermediate 
-        $pfIntermediate["D2"] = (($nc["D2"]["Intermediate"]) + ($m * $pInterm)) / ($n["i"] + $m);
+        $pfIntermediate["D2"] = (($nc["D2"]["Intermediate"]) + ($m * $pD)) / ($n["i"] + $m);
 
         //Probabilidades de frecuencia para advanced 
-        $pfAdvanced["D2"] = (($nc["D2"]["Advanced"]) + ($m * $pAdvan)) / ($n["a"] + $m);
+        $pfAdvanced["D2"] = (($nc["D2"]["Advanced"]) + ($m * $pD)) / ($n["a"] + $m);
 
 
         //Probabilidades de frecuencia para beginner ** (nc[edad][beginner]+m*p)/(n+m)
-        $pfBeginner["D3"] = (($nc["D3"]["Beginner"]) + ($m * $pBegin)) / ($n["b"] + $m);
+        $pfBeginner["D3"] = (($nc["D3"]["Beginner"]) + ($m * $pD)) / ($n["b"] + $m);
 
         //Probabilidades de frecuencia para intermediate 
-        $pfIntermediate["D3"] = (($nc["D3"]["Intermediate"]) + ($m * $pInterm)) / ($n["i"] + $m);
+        $pfIntermediate["D3"] = (($nc["D3"]["Intermediate"]) + ($m * $pD)) / ($n["i"] + $m);
 
         //Probabilidades de frecuencia para advanced 
-        $pfAdvanced["D3"] = (($nc["D3"]["Advanced"]) + ($m * $pAdvan)) / ($n["a"] + $m);
+        $pfAdvanced["D3"] = (($nc["D3"]["Advanced"]) + ($m * $pD)) / ($n["a"] + $m);
 
         /*******************************************************************************************************/
         //Probabilidad de cada aprendizaje previo por clase
 
 
         //Probabilidades de frecuencia para beginner 
-        $pfBeginner["EDM"] = (($nc["EDM"]["Beginner"]) + ($m * $pBegin)) / ($n["b"] + $m);
+        $pfBeginner["EDM"] = (($nc["EDM"]["Beginner"]) + ($m * $pE)) / ($n["b"] + $m);
 
         //Probabilidades de frecuencia para intermediate 
-        $pfIntermediate["EDM"] = (($nc["EDM"]["Intermediate"]) + ($m * $pInterm)) / ($n["i"] + $m);
+        $pfIntermediate["EDM"] = (($nc["EDM"]["Intermediate"]) + ($m * $pE)) / ($n["i"] + $m);
 
         //Probabilidades de frecuencia para advanced 
-        $pfAdvanced["EDM"] = (($nc["EDM"]["Advanced"]) + ($m * $pAdvan)) / ($n["a"] + $m);
+        $pfAdvanced["EDM"] = (($nc["EDM"]["Advanced"]) + ($m * $pE)) / ($n["a"] + $m);
 
 
         //Probabilidades de frecuencia para beginner ** (nc[edad][beginner]+m*p)/(n+m)
-        $pfBeginner["END"] = (($nc["END"]["Beginner"]) + ($m * $pBegin)) / ($n["b"] + $m);
+        $pfBeginner["END"] = (($nc["END"]["Beginner"]) + ($m * $pE)) / ($n["b"] + $m);
 
         //Probabilidades de frecuencia para intermediate 
-        $pfIntermediate["END"] = (($nc["END"]["Intermediate"]) + ($m * $pInterm)) / ($n["i"] + $m);
+        $pfIntermediate["END"] = (($nc["END"]["Intermediate"]) + ($m * $pE)) / ($n["i"] + $m);
 
         //Probabilidades de frecuencia para advanced 
-        $pfAdvanced["END"] = (($nc["END"]["Advanced"]) + ($m * $pAdvan)) / ($n["a"] + $m);
+        $pfAdvanced["END"] = (($nc["END"]["Advanced"]) + ($m * $pE)) / ($n["a"] + $m);
 
 
         //Probabilidades de frecuencia para beginner ** (nc[edad][beginner]+m*p)/(n+m)
-        $pfBeginner["EO"] = (($nc["EO"]["Beginner"]) + ($m * $pBegin)) / ($n["b"] + $m);
+        $pfBeginner["EO"] = (($nc["EO"]["Beginner"]) + ($m * $pE)) / ($n["b"] + $m);
 
         //Probabilidades de frecuencia para intermediate 
-        $pfIntermediate["EO"] = (($nc["EO"]["Intermediate"]) + ($m * $pInterm)) / ($n["i"] + $m);
+        $pfIntermediate["EO"] = (($nc["EO"]["Intermediate"]) + ($m * $pE)) / ($n["i"] + $m);
 
         //Probabilidades de frecuencia para advanced 
-        $pfAdvanced["EO"] = (($nc["EO"]["Advanced"]) + ($m * $pAdvan)) / ($n["a"] + $m);
+        $pfAdvanced["EO"] = (($nc["EO"]["Advanced"]) + ($m * $pE)) / ($n["a"] + $m);
 
         /*******************************************************************************************************/
         //Probabilidad de cada habi. usando compus por clase
 
 
         //Probabilidades de frecuencia para beginner 
-        $pfBeginner["FL"] = (($nc["FL"]["Beginner"]) + ($m * $pBegin)) / ($n["b"] + $m);
+        $pfBeginner["FL"] = (($nc["FL"]["Beginner"]) + ($m * $pF)) / ($n["b"] + $m);
 
         //Probabilidades de frecuencia para intermediate 
-        $pfIntermediate["FL"] = (($nc["FL"]["Intermediate"]) + ($m * $pInterm)) / ($n["i"] + $m);
+        $pfIntermediate["FL"] = (($nc["FL"]["Intermediate"]) + ($m * $pF)) / ($n["i"] + $m);
 
         //Probabilidades de frecuencia para advanced 
-        $pfAdvanced["FL"] = (($nc["FL"]["Advanced"]) + ($m * $pAdvan)) / ($n["a"] + $m);
+        $pfAdvanced["FL"] = (($nc["FL"]["Advanced"]) + ($m * $pF)) / ($n["a"] + $m);
 
 
         //Probabilidades de frecuencia para beginner ** (nc[edad][beginner]+m*p)/(n+m)
-        $pfBeginner["FA"] = (($nc["FA"]["Beginner"]) + ($m * $pBegin)) / ($n["b"] + $m);
+        $pfBeginner["FA"] = (($nc["FA"]["Beginner"]) + ($m * $pF)) / ($n["b"] + $m);
 
         //Probabilidades de frecuencia para intermediate 
-        $pfIntermediate["FA"] = (($nc["FA"]["Intermediate"]) + ($m * $pInterm)) / ($n["i"] + $m);
+        $pfIntermediate["FA"] = (($nc["FA"]["Intermediate"]) + ($m * $pF)) / ($n["i"] + $m);
 
         //Probabilidades de frecuencia para advanced 
-        $pfAdvanced["FA"] = (($nc["FA"]["Advanced"]) + ($m * $pAdvan)) / ($n["a"] + $m);
+        $pfAdvanced["FA"] = (($nc["FA"]["Advanced"]) + ($m * $pF)) / ($n["a"] + $m);
 
 
         //Probabilidades de frecuencia para beginner ** (nc[edad][beginner]+m*p)/(n+m)
-        $pfBeginner["FH"] = (($nc["FH"]["Beginner"]) + ($m * $pBegin)) / ($n["b"] + $m);
+        $pfBeginner["FH"] = (($nc["FH"]["Beginner"]) + ($m * $pF)) / ($n["b"] + $m);
 
         //Probabilidades de frecuencia para intermediate 
-        $pfIntermediate["FH"] = (($nc["FH"]["Intermediate"]) + ($m * $pInterm)) / ($n["i"] + $m);
+        $pfIntermediate["FH"] = (($nc["FH"]["Intermediate"]) + ($m * $pF)) / ($n["i"] + $m);
 
         //Probabilidades de frecuencia para advanced 
-        $pfAdvanced["FH"] = (($nc["FH"]["Advanced"]) + ($m * $pAdvan)) / ($n["a"] + $m);
+        $pfAdvanced["FH"] = (($nc["FH"]["Advanced"]) + ($m * $pF)) / ($n["a"] + $m);
 
 
         /*******************************************************************************************************/
@@ -651,33 +621,33 @@ class BayesController
 
 
         //Probabilidades de frecuencia para beginner 
-        $pfBeginner["GN"] = (($nc["GN"]["Beginner"]) + ($m * $pBegin)) / ($n["b"] + $m);
+        $pfBeginner["GN"] = (($nc["GN"]["Beginner"]) + ($m * $pG)) / ($n["b"] + $m);
 
         //Probabilidades de frecuencia para intermediate 
-        $pfIntermediate["GN"] = (($nc["GN"]["Intermediate"]) + ($m * $pInterm)) / ($n["i"] + $m);
+        $pfIntermediate["GN"] = (($nc["GN"]["Intermediate"]) + ($m * $pG)) / ($n["i"] + $m);
 
         //Probabilidades de frecuencia para advanced 
-        $pfAdvanced["GN"] = (($nc["GN"]["Advanced"]) + ($m * $pAdvan)) / ($n["a"] + $m);
+        $pfAdvanced["GN"] = (($nc["GN"]["Advanced"]) + ($m * $pG)) / ($n["a"] + $m);
 
 
         //Probabilidades de frecuencia para beginner ** (nc[edad][beginner]+m*p)/(n+m)
-        $pfBeginner["GS"] = (($nc["GS"]["Beginner"]) + ($m * $pBegin)) / ($n["b"] + $m);
+        $pfBeginner["GS"] = (($nc["GS"]["Beginner"]) + ($m * $pG)) / ($n["b"] + $m);
 
         //Probabilidades de frecuencia para intermediate 
-        $pfIntermediate["GS"] = (($nc["GS"]["Intermediate"]) + ($m * $pInterm)) / ($n["i"] + $m);
+        $pfIntermediate["GS"] = (($nc["GS"]["Intermediate"]) + ($m * $pG)) / ($n["i"] + $m);
 
         //Probabilidades de frecuencia para advanced 
-        $pfAdvanced["GS"] = (($nc["GS"]["Advanced"]) + ($m * $pAdvan)) / ($n["a"] + $m);
+        $pfAdvanced["GS"] = (($nc["GS"]["Advanced"]) + ($m * $pG)) / ($n["a"] + $m);
 
 
         //Probabilidades de frecuencia para beginner ** (nc[edad][beginner]+m*p)/(n+m)
-        $pfBeginner["GO"] = (($nc["GO"]["Beginner"]) + ($m * $pBegin)) / ($n["b"] + $m);
+        $pfBeginner["GO"] = (($nc["GO"]["Beginner"]) + ($m * $pG)) / ($n["b"] + $m);
 
         //Probabilidades de frecuencia para intermediate 
-        $pfIntermediate["GO"] = (($nc["GO"]["Intermediate"]) + ($m * $pInterm)) / ($n["i"] + $m);
+        $pfIntermediate["GO"] = (($nc["GO"]["Intermediate"]) + ($m * $pG)) / ($n["i"] + $m);
 
         //Probabilidades de frecuencia para advanced 
-        $pfAdvanced["GO"] = (($nc["GO"]["Advanced"]) + ($m * $pAdvan)) / ($n["a"] + $m);
+        $pfAdvanced["GO"] = (($nc["GO"]["Advanced"]) + ($m * $pG)) / ($n["a"] + $m);
 
 
         /*******************************************************************************************************/
@@ -685,33 +655,33 @@ class BayesController
 
 
         //Probabilidades de frecuencia para beginner 
-        $pfBeginner["HN"] = (($nc["HN"]["Beginner"]) + ($m * $pBegin)) / ($n["b"] + $m);
+        $pfBeginner["HN"] = (($nc["HN"]["Beginner"]) + ($m * $pH)) / ($n["b"] + $m);
 
         //Probabilidades de frecuencia para intermediate 
-        $pfIntermediate["HN"] = (($nc["HN"]["Intermediate"]) + ($m * $pInterm)) / ($n["i"] + $m);
+        $pfIntermediate["HN"] = (($nc["HN"]["Intermediate"]) + ($m * $pH)) / ($n["i"] + $m);
 
         //Probabilidades de frecuencia para advanced 
-        $pfAdvanced["HN"] = (($nc["HN"]["Advanced"]) + ($m * $pAdvan)) / ($n["a"] + $m);
+        $pfAdvanced["HN"] = (($nc["HN"]["Advanced"]) + ($m * $pH)) / ($n["a"] + $m);
 
 
         //Probabilidades de frecuencia para beginner ** (nc[edad][beginner]+m*p)/(n+m)
-        $pfBeginner["HS"] = (($nc["HS"]["Beginner"]) + ($m * $pBegin)) / ($n["b"] + $m);
+        $pfBeginner["HS"] = (($nc["HS"]["Beginner"]) + ($m * $pH)) / ($n["b"] + $m);
 
         //Probabilidades de frecuencia para intermediate 
-        $pfIntermediate["HS"] = (($nc["HS"]["Intermediate"]) + ($m * $pInterm)) / ($n["i"] + $m);
+        $pfIntermediate["HS"] = (($nc["HS"]["Intermediate"]) + ($m * $pH)) / ($n["i"] + $m);
 
         //Probabilidades de frecuencia para advanced 
-        $pfAdvanced["HS"] = (($nc["HS"]["Advanced"]) + ($m * $pAdvan)) / ($n["a"] + $m);
+        $pfAdvanced["HS"] = (($nc["HS"]["Advanced"]) + ($m * $pH)) / ($n["a"] + $m);
 
 
         //Probabilidades de frecuencia para beginner ** (nc[edad][beginner]+m*p)/(n+m)
-        $pfBeginner["HO"] = (($nc["HO"]["Beginner"]) + ($m * $pBegin)) / ($n["b"] + $m);
+        $pfBeginner["HO"] = (($nc["HO"]["Beginner"]) + ($m * $pH)) / ($n["b"] + $m);
 
         //Probabilidades de frecuencia para intermediate 
-        $pfIntermediate["HO"] = (($nc["HO"]["Intermediate"]) + ($m * $pInterm)) / ($n["i"] + $m);
+        $pfIntermediate["HO"] = (($nc["HO"]["Intermediate"]) + ($m * $pH)) / ($n["i"] + $m);
 
         //Probabilidades de frecuencia para advanced 
-        $pfAdvanced["HO"] = (($nc["HO"]["Advanced"]) + ($m * $pAdvan)) / ($n["a"] + $m);
+        $pfAdvanced["HO"] = (($nc["HO"]["Advanced"]) + ($m * $pH)) / ($n["a"] + $m);
 
 
 
@@ -740,66 +710,74 @@ class BayesController
 
 
 
-    public function adivinarTipoProfesor(){
-                /* 
+    public function adivinarTipoProfesor()
+    {
+        require 'model/TareaModel.php';
+        $tarea = new TareaModel();
 
-        ///////////////////////////////////
+        $data = $tarea->obtenerDatosProfesor();
 
-        //SE PROCEDE A MULTIPLICAR CADA PROBABILIDAD
-
-        //Primera combinacion de 3
-
-        //Beginner 
-        $productoFrecuenciaB[0] = $pfBeginner["A1"] * $pfBeginner["BF"] * $pfBeginner["CB"] * $pfBeginner["D1"] * $pfBeginner["EDM"] * $pfBeginner["FL"] * $pfBeginner["GN"] * $pfBeginner["HN"];
-        //Intermediate
-        $productoFrecuenciaI[0] = $pfIntermediate["A1"] * $pfIntermediate["BF"] * $pfIntermediate["CB"] * $pfIntermediate["D1"] * $pfIntermediate["EDM"] * $pfIntermediate["FL"] * $pfIntermediate["GN"] * $pfIntermediate["HN"];
-        //Advanced 
-        $productoFrecuenciaA[0] = $pfAdvanced["A1"] * $pfAdvanced["BF"] * $pfAdvanced["CB"] * $pfAdvanced["D1"] * $pfAdvanced["EDM"] * $pfAdvanced["FL"] * $pfAdvanced["GN"] * $pfAdvanced["HN"];
-
-        //Segunda combinacion de 3
-
-        //Beginner 
-        $productoFrecuenciaB[1] = $pfBeginner["A2"] * $pfBeginner["BM"] * $pfBeginner["CI"] * $pfBeginner["D2"] * $pfBeginner["END"] * $pfBeginner["FA"] * $pfBeginner["GS"] * $pfBeginner["HS"];
-        //Intermediate
-        $productoFrecuenciaI[1] = $pfIntermediate["A2"] * $pfIntermediate["BM"] * $pfIntermediate["CI"] * $pfIntermediate["D2"] * $pfIntermediate["END"] * $pfIntermediate["FA"] * $pfIntermediate["GS"] * $pfIntermediate["HS"];
-        //Advanced 
-        $productoFrecuenciaA[1] = $pfAdvanced["A2"] * $pfAdvanced["BM"] * $pfAdvanced["CI"] * $pfAdvanced["D2"] * $pfAdvanced["END"] * $pfAdvanced["FA"] * $pfAdvanced["GS"] * $pfAdvanced["HS"];
+        //Datos del usuario que corresponden a cada columna de datos
+        $a = $_POST['A'];
+        $b = $_POST['B'];
+        $c = $_POST['C'];
+        $d = $_POST['D'];
+        $e = $_POST['E'];
+        $f = $_POST['F'];
+        $g = $_POST['G'];
+        $h = $_POST['H'];
 
 
-        //Tercera de 3
+        //Una vez que se obtienen los datos del usuario se comparan con los datos ya guardados
+        //este seria la segunda parte del algoritmo de BAYES
 
-        //Beginner 
-        $productoFrecuenciaB[2] = $pfBeginner["A3"] * $pfBeginner["BNA"] * $pfBeginner["CA"] * $pfBeginner["D3"] * $pfBeginner["EO"] * $pfBeginner["FH"] * $pfBeginner["GO"] * $pfBeginner["HO"];
-        //Intermediate
-        $productoFrecuenciaI[2] = $pfIntermediate["A3"] * $pfIntermediate["BNA"] * $pfIntermediate["CA"] * $pfIntermediate["D3"] * $pfIntermediate["EO"] * $pfIntermediate["FH"] * $pfIntermediate["GO"] * $pfIntermediate["HO"];
-        //Advanced 
-        $productoFrecuenciaA[2] = $pfAdvanced["A3"] * $pfAdvanced["BNA"] * $pfAdvanced["CA"] * $pfAdvanced["D3"] * $pfAdvanced["EO"] * $pfAdvanced["FH"] * $pfAdvanced["GO"] * $pfAdvanced["HO"];
+        // Obtiene los datos previos 
+        $prob_previas = file_get_contents("resultados_prof.json");
 
-        //Por ultimo se multiplica cada producto de frecuencia * la probabilidad de clase inicial (3/20)
-        $productoTotalB[0] = $productoFrecuenciaB[0] * $pBegin;
-        $productoTotalI[0] = $productoFrecuenciaI[0] * $pInterm;
-        $productoTotalA[0] = $productoFrecuenciaA[0] * $pAdvan;
+        $arr = json_decode($prob_previas, true);
 
-        $productoTotalB[1] = $productoFrecuenciaB[1] * $pBegin;
-        $productoTotalI[1] = $productoFrecuenciaI[1] * $pInterm;
-        $productoTotalA[1] = $productoFrecuenciaA[1] * $pAdvan;
+        //Probabilidades de clase
+        $pBegin = 3 / sizeof($data);
+        $pInterm = 3 / sizeof($data);
+        $pAdvan = 3 / sizeof($data);
 
-        $productoTotalB[2] = $productoFrecuenciaB[2] * $pBegin;
-        $productoTotalI[2] = $productoFrecuenciaI[2] * $pInterm;
-        $productoTotalA[2] = $productoFrecuenciaA[2] * $pAdvan;
+        //Multiplicacion de todas las caracteristicas para Beginner
 
-        $vector_probabilidades_profesor[0]["B"] = $productoTotalB[0];
-        $vector_probabilidades_profesor[0]["I"] = $productoTotalI[0];
-        $vector_probabilidades_profesor[0]["A"] = $productoTotalA[0];
+        $valorBeginner = $arr['Beginner']['A' . $a] * $arr['Beginner']['B' . $b] * $arr['Beginner']['C' . $c]
+            * $arr['Beginner']['D' . $d] * $arr['Beginner']['E' . $e] * $arr['Beginner']['F' . $f] * $arr['Beginner']['G' . $g] * $arr['Beginner']['H' . $h];
 
-        $vector_probabilidades_profesor[1]["B"] = $productoTotalB[1];
-        $vector_probabilidades_profesor[1]["I"] = $productoTotalI[1];
-        $vector_probabilidades_profesor[1]["A"] = $productoTotalA[1];
+        //Multiplicacion de ese valor por la prior probability de beginner
+        $valorFinalBeginner = $valorBeginner * $pBegin;
 
-        $vector_probabilidades_profesor[2]["B"] = $productoTotalB[2];
-        $vector_probabilidades_profesor[2]["I"] = $productoTotalI[2];
-        $vector_probabilidades_profesor[2]["A"] = $productoTotalA[2];
+        //Multiplicacion de todas las caracteristicas para Intermediate
 
-        */
+        $valorIntermediate = $arr['Intermediate']['A' . $a] * $arr['Intermediate']['B' . $b] * $arr['Intermediate']['C' . $c]
+            * $arr['Intermediate']['D' . $d] * $arr['Intermediate']['E' . $e] * $arr['Intermediate']['F' . $f] * $arr['Intermediate']['G' . $g] * $arr['Intermediate']['H' . $h];
+
+        //Multiplicacion de ese valor por la prior probability de beginner
+        $valorFinalIntermediate = $valorIntermediate* $pInterm;
+
+        //Multiplicacion de todas las caracteristicas para Advanced
+
+        $valorAdvanced = $arr['Advanced']['A' . $a] * $arr['Advanced']['B' . $b] * $arr['Advanced']['C' . $c]
+            * $arr['Advanced']['D' . $d] * $arr['Advanced']['E' . $e] * $arr['Advanced']['F' . $f] * $arr['Advanced']['G' . $g] * $arr['Advanced']['H' . $h];
+
+        //Multiplicacion de ese valor por la prior probability de beginner
+        $valorFinalAdvanced = $valorAdvanced * $pAdvan;
+
+
+        //Una vez que se tiene los datos se obtiene el mayor
+        $resultados = array($valorFinalBeginner,$valorFinalIntermediate,$valorFinalAdvanced);
+        $mayor = max($resultados);
+
+        if($mayor == $valorFinalBeginner){
+            $clase = "Beginner";
+        }elseif($mayor == $valorFinalIntermediate){
+            $clase = "Intermediate";
+        }elseif($mayor == $valorFinalAdvanced){
+            $clase = "Advanced";
+        }
+
+        $this->view->show("tipoProfesorView.php",$clase);
     }
 }//fin de clase
