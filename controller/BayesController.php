@@ -737,7 +737,7 @@ class BayesController
         $arr = json_decode($prob_previas, true);
 
         //Probabilidades de clase
-        $pBegin = 3 / sizeof($data);
+        $pBegin = 3 / sizeof($data); /** Se puede cambiar aun no es seguro */
         $pInterm = 3 / sizeof($data);
         $pAdvan = 3 / sizeof($data);
 
