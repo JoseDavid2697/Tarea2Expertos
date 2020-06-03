@@ -736,10 +736,25 @@ class BayesController
 
         $arr = json_decode($prob_previas, true);
 
+                //Numero de apariciones de cada clase en los datos
+                $n["b"] = 0;
+                $n["i"] = 0;
+                $n["a"] = 0;
+        
+                foreach ($data as $item) {
+                    if ($item["class"] == "Beginner") {
+                        $n["b"] = $n["b"] + 1;
+                    } elseif ($item["class"] == "Intermediate") {
+                        $n["i"] = $n["i"] + 1;
+                    } else {
+                        $n["a"] = $n["a"] + 1;
+                    }
+                }
+
         //Probabilidades de clase
-        $pBegin = 3 / sizeof($data); /** Se puede cambiar aun no es seguro */
-        $pInterm = 3 / sizeof($data);
-        $pAdvan = 3 / sizeof($data);
+        $pBegin = $n["b"] / sizeof($data); 
+        $pInterm = $n["i"] / sizeof($data);
+        $pAdvan = $n["a"] / sizeof($data);
 
         //Multiplicacion de todas las caracteristicas para Beginner
 
