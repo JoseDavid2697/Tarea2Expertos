@@ -267,11 +267,11 @@ class BayesSexoController
         //ESTO ES LO QUE SE GUARDA
         $vSexoEstudiante["M"] = $pfMasculino;
 
-        //Probabilidades de frecuencia para intermediate 
+         
         $vSexoEstudiante["F"] = $pfFemenino;
 
         $arr = json_encode($vSexoEstudiante);
-        echo $arr;
+        
 
         $fp = fopen('resultados_sexo_estudiante.json', 'w');
         fwrite($fp, json_encode($vSexoEstudiante));
