@@ -161,7 +161,7 @@ class BayesEstiloEstudianteController
                 $nc["recintoParaiso"]["ACOMODADOR"]++;
             }
 
-            //Estilo diver,asim,acom,conver con promedio 6,7,8,9,10
+            //Estilo diver,asim,acom,conver con promedio 6,7,8,9
             if ($item["estilo"] == "DIVERGENTE" && $item["promedio"] == 6) {
 
                 $nc["promedio6"]["DIVERGENTE"]++;
@@ -375,7 +375,7 @@ class BayesEstiloEstudianteController
         $vEstiloEst["Acomodador"] = $pfAcomodador;
 
         $arr = json_encode($vEstiloEst);
-        echo $arr;
+        
 
         $fp = fopen('resultados_estilo_estudiante.json', 'w');
         fwrite($fp, json_encode($vEstiloEst));
