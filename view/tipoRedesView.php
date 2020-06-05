@@ -6,7 +6,7 @@
             <div class="form-group">
             <h2>Determinar tipo de red</h2>
             <br>
-                <form action="?controlador=Tarea&accion=obtenerDatosRedes" method="post">
+                <form action="?controlador=BayesRedes&accion=adivinarClaseRed" method="post">
                     <div class="form-group">
                     <label for="Re">Fiabilidad de la red</label>
                     <select name="Re" id="Re" class="form-control">

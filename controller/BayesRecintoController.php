@@ -32,7 +32,7 @@ class BayesRecintoController
         }
 
 
-        //Llama al algoritmo de bayes para sexo estudiante y guarda las probabilidades en un archivo
+        //Llama al algoritmo de bayes para recinto estudiante y guarda las probabilidades en un archivo
 
         $this->guardarProbabilidadesRecintoEstudiante($data);
     }
@@ -263,7 +263,9 @@ class BayesRecintoController
 
             $pfParaiso["estiloAcomodador"] = (($nc["estiloAcomodador"]["Paraiso"]) + ($m * $pEstilo)) / ($n["paraiso"] + $m);
 
-                //NO SEGUIR
+
+
+
         //ESTO ES LO QUE SE GUARDA
         $vRecintoEstudiante["Turrialba"] = $pfTurrialba;
 
@@ -329,7 +331,7 @@ class BayesRecintoController
         $valorParaiso = $arr['Paraiso']['sexo' . $sexo] * $arr['Paraiso']['promedio' . $promedio]
             * $arr['Paraiso']['estilo' . $estilo];
 
-        //Multiplicacion de ese valor por la prior probability de Femenino
+        //Multiplicacion de ese valor por la prior probability de Paraiso
         $valorFinalParaiso = $valorParaiso * $pParaiso;
 
         //Una vez que se tiene los datos se obtiene el mayor
